@@ -2078,7 +2078,7 @@ SMODS.Joker{
                     colour = G.C.PURPLE,
                     Xmult_mod = card.ability.extra.Xmult,
                     chips = 1.5 * hand_chips,
-                    message = "X3 All",
+                    message = "X1.5 All",
                     sound = 'jtc_orchestrahit',
                     remove_default_message = true
                 }

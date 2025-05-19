@@ -80,7 +80,7 @@ SMODS.Enhancement{
         name = 'Benefit Card',
         text = {
             '{C:chips}+#1#{} Chips,',
-            '{C:mult}+3{} Mult and',
+            '{C:mult}+6{} Mult and',
             '{C:money}$2{} when scored.'
         }
     },
@@ -95,7 +95,7 @@ SMODS.Enhancement{
     if context.cardarea == G.play and context.main_scoring then
         return {
         chips = card.ability.chips,
-        mult_mod = card.ability.mult,
+        mult = card.ability.mult,
         dollars = card.ability.money,
         card = card,
     }

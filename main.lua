@@ -5,7 +5,7 @@
 --- BADGE_COLOUR: 4a3491
 --- BADGE_TEXT_COLOUR: c8bfe7
 --- MOD_AUTHOR: [DynaLeet]
---- MOD_DESCRIPTION: Adds 55 Jokers, 1 new Consumable Type, and a bunch of other content! Some Jokers in this mod are based off of my OCs, so be aware of that!
+--- MOD_DESCRIPTION: Adds 59 Jokers, 1 new Consumable Type, and a bunch of other content! Some Jokers in this mod are based off of my OCs, so be aware of that!
 --- PREFIX: jtc
 ----------------------------------------------
 ------------MOD CODE -------------------------

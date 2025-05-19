@@ -1,4 +1,4 @@
-# Join The Crowd
+# Join The Crowd - Milky's 'Mint' Balatro Mod
 - a Balatro mod that adds 59 Jokers, 1 Consumable Type, 2 Enhancements, 2 Seals and 3 (bland af) Boss Blinds!
 - This is also my first Balatro mod, so it might be a little bit garbage.
 - Requires Steamodded! all work done for this mod has been done and tested with Steamodded build 1311a, so playing this on builds beyond that may cause bugs to occur!

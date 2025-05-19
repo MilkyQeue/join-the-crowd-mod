@@ -1,7 +1,7 @@
 --- STEAMODDED HEADER
 --- MOD_NAME: Join The Crowd
 --- MOD_ID: JoinTheCrowd
---- VERSION: 1.3.0
+--- VERSION: 1.5.0
 --- BADGE_COLOUR: 4a3491
 --- BADGE_TEXT_COLOUR: c8bfe7
 --- MOD_AUTHOR: [DynaLeet]

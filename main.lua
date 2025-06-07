@@ -1,14 +1,21 @@
 --- STEAMODDED HEADER
 --- MOD_NAME: Join The Crowd
 --- MOD_ID: JoinTheCrowd
---- VERSION: 1.5.0
+--- VERSION: 1.6.0
 --- BADGE_COLOUR: 4a3491
 --- BADGE_TEXT_COLOUR: c8bfe7
 --- MOD_AUTHOR: [DynaLeet]
---- MOD_DESCRIPTION: Adds 59 Jokers, 1 new Consumable Type, and a bunch of other content! Some Jokers in this mod are based off of my OCs, so be aware of that!
+--- MOD_DESCRIPTION: A Mint / Mint-Chip Mod that Adds 70 Jokers, 1 new Consumable Type, and a bunch of other content!
 --- PREFIX: jtc
 ----------------------------------------------
 ------------MOD CODE -------------------------
+
+SMODS.Atlas{
+    key = 'modicon',
+    path = 'jtcicon.png',
+    px = 34,
+    py = 34
+}
 
 -- RARITIES
 
@@ -27,10 +34,9 @@ SMODS.Rarity{
         name = 'Stunning'
     },
     badge_colour = HEX('288aa8'),
-    default_weight = 0.98,
+    default_weight = 0.9,
     shop_rate = 20
 }
-
 -- ENHANCEMENTS
 
 SMODS.Atlas{
@@ -80,13 +86,13 @@ SMODS.Enhancement{
         name = 'Benefit Card',
         text = {
             '{C:chips}+#1#{} Chips,',
-            '{C:mult}+6{} Mult and',
+            '{C:mult}+2{} Mult and',
             '{C:money}$2{} when scored.'
         }
     },
     atlas = 'assist',
     config = {
-        chips = 10, mult = 3, money = 2
+        chips = 10, mult = 1, money = 2
     },
     loc_vars = function(self,info_queue,center)
         return{vars = {center.ability.chips, center.ability.mult, center.ability.money}}
@@ -101,6 +107,36 @@ SMODS.Enhancement{
     }
     end
 end
+}
+
+SMODS.Atlas{
+    key = 'case',
+    path = 'caseenhance.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Enhancement{
+    key = 'DVD',
+    loc_txt = {
+        name = 'DVD Case',
+        text = {
+            '{X:mult,C:white}X1.5{} Mult.',
+            'No rank or suit.',
+            'Card always scores.'
+        }
+    },
+    atlas = 'case',
+    replace_base_card = true,
+    no_rank = true,
+    no_suit = true,
+    always_scores = true,
+    config = {
+        x_mult = 1.5
+    },
+    loc_vars = function(self,info_queue,center)
+        return{vars = {center.ability.x_mult}}
+    end
 }
 
 -- SOUNDS
@@ -157,6 +193,13 @@ SMODS.Sound({
 SMODS.Sound({
     pitch = 1,
     vol = 1,
+    key = 'splotch',
+    path = 'splotch.ogg'
+})
+
+SMODS.Sound({
+    pitch = 1,
+    vol = 1,
     key = 'goteem',
     path = 'HAH.ogg'
 })
@@ -190,6 +233,7 @@ SMODS.Atlas{
     px = 71,
     py = 95
 }
+
 -- all other atlases are meant for the Crowd consumables.
 
 SMODS.Atlas{
@@ -234,6 +278,14 @@ SMODS.Atlas{
 }
 
 SMODS.Atlas{
+    key = 'theemployee',
+    path = 'theemployee.png',
+    px = 71,
+    py = 95
+}
+
+
+SMODS.Atlas{
     key = 'thebrother',
     path = 'thebrother.png',
     px = 71,
@@ -243,6 +295,13 @@ SMODS.Atlas{
 SMODS.Atlas{
     key = 'thehoncho',
     path = 'thehoncho.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Atlas{
+    key = 'theartist',
+    path = 'theartist.png',
     px = 71,
     py = 95
 }
@@ -262,13 +321,6 @@ SMODS.Atlas{
 }
 
 SMODS.Atlas{
-    key = 'crowdpack1',
-    path = 'CrowdPack1.png',
-    px = 57,
-    py = 93
-}
-
-SMODS.Atlas{
     key = 'stoneseal',
     path = 'stoneseal.png',
     px = 71,
@@ -283,12 +335,10 @@ SMODS.Atlas{
 }
 
 SMODS.Atlas{
-    key = 'blindbase',
-    path = 'blindbase.png',
-    px = 34,
-    py = 34,
-    frames = 1,
-    atlas_table = 'ANIMATION_ATLAS'
+    key = 'splotchseal',
+    path = 'splotchseal.png',
+    px = 71,
+    py = 95,
 }
 
 SMODS.Atlas{
@@ -310,12 +360,37 @@ SMODS.Atlas{
 }
 
 SMODS.Atlas{
+    key = 'thecrosshair',
+    path = 'thecrosshair.png',
+    px = 34,
+    py = 34,
+    frames = 1,
+    atlas_table = 'ANIMATION_ATLAS'
+}
+
+SMODS.Atlas{
     key = 'concretepillar',
     path = 'concretepillar.png',
     px = 34,
     py = 34,
     frames = 1,
     atlas_table = 'ANIMATION_ATLAS'
+}
+
+SMODS.Atlas{
+    key = 'noirnail',
+    path = 'noirnail.png',
+    px = 34,
+    py = 34,
+    frames = 1,
+    atlas_table = 'ANIMATION_ATLAS'
+}
+
+SMODS.Atlas{
+    key = 'mythos',
+    path = 'mythosdeck.png',
+    px = 71,
+    py = 95
 }
 
 -- CONSUMABLES (CROWD)
@@ -490,8 +565,8 @@ SMODS.Consumable{
     loc_txt = {
         name = 'The Tourist',
         text = {
-            'Enhances {C:attention}#1#{} selected cards',
-            '{T:jtc_m_Tropic}into {C:attention}Tropic Cards.{}'
+            '{T:m_jtc_Tropic}Enhances {C:attention}#1#{} selected cards',
+            'into {C:attention}Tropic Cards.{}'
         }
     },
     config = {
@@ -525,7 +600,7 @@ SMODS.Consumable{
     loc_txt = {
         name = 'The Coworker',
         text = {
-            'Enhances {C:attention}#1#{} selected cards',
+            '{T:m_jtc_Assist}Enhances {C:attention}#1#{} selected cards',
             'into {C:attention}Benefit Cards.{}'
         }
     },
@@ -548,6 +623,41 @@ SMODS.Consumable{
     use = function(self,card,area,copier)
         for i = 1, #G.hand.highlighted do 
             G.hand.highlighted[i]:set_ability(G.P_CENTERS.m_jtc_Assist, nil, true)
+        end
+    end,
+}
+
+SMODS.Consumable{
+    key = 'EmployeeCard',
+    set = 'Crowd',
+    atlas = 'theemployee',
+    cost = 4,
+    loc_txt = {
+        name = 'The Employee',
+        text = {
+            '{T:m_jtc_DVD}Enhances {C:attention}#1#{} selected cards',
+            'into {C:attention}DVD Cases.{}'
+        }
+    },
+    config = {
+        extra = {
+            cards = 2,
+        }
+    },
+    loc_vars = function(self,info_queue,center)
+        return {vars = {center.ability.extra.cards}}
+    end,
+    can_use = function(self,card)
+        if G and G.hand then
+            if #G.hand.highlighted ~= 0 and #G.hand.highlighted <= card.ability.extra.cards then
+                return true
+            end
+        end
+        return false
+    end,
+    use = function(self,card,area,copier)
+        for i = 1, #G.hand.highlighted do 
+            G.hand.highlighted[i]:set_ability(G.P_CENTERS.m_jtc_DVD, nil, true)
         end
     end,
 }
@@ -625,6 +735,46 @@ SMODS.Consumable{
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.1,func = function()
             play_sound("jtc_chaching")
             G.hand.highlighted[i].seal = "jtc_greedy"
+            return true end }))
+            delay(0.5)
+        end
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.2,func = function() G.hand:unhighlight_all(); return true end }))
+    end,
+}
+
+SMODS.Consumable{
+    key = 'ArtistCard',
+    set = 'Crowd',
+    atlas = 'theartist',
+    cost = 4,
+    loc_txt = {
+        name = 'The Artist',
+        text = {
+            'Applys a {C:black}Splotch Branding{} to',
+            '{C:attention}1{} selected card in hand.'
+        }
+    },
+    config = {
+        extra = {
+            cards = 1,
+        }
+    },
+    loc_vars = function(self,info_queue,center)
+        return {vars = {center.ability.extra.cards}}
+    end,
+    can_use = function(self,card)
+        if G and G.hand then
+            if #G.hand.highlighted ~= 0 and #G.hand.highlighted <= card.ability.extra.cards then
+                return true
+            end
+        end
+        return false
+    end,
+    use = function(self,card,area,copier)
+        for i = 1, #G.hand.highlighted do
+            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.1,func = function()
+            play_sound("jtc_splotch")
+            G.hand.highlighted[i].seal = "jtc_sloppy"
             return true end }))
             delay(0.5)
         end
@@ -725,9 +875,39 @@ SMODS.Consumable{
         end
 }
 
--- BOOSTERS (CROWD)
+-- DECKS
 
--- soon.
+SMODS.Back{
+    name = 'Mythos Deck',
+    key = 'mythos',
+    atlas = 'mythos',
+    pos = {x = 0, y = 0},
+    config = {hands = -2, discards = -1},
+    loc_txt = {
+        name = 'Mythos Deck',
+        text = {
+            'Start with a random',
+            '{C:jtc_mythical}Mythical{} Joker.',
+            '{C:blue}2{} Hands and {C:red}2{} Discards',
+            'every round.'
+        }
+    },
+    loc_vars = function(self)
+        return {vars = {self.config.hands, self.config.discards} }
+    end,
+    apply = function(self)
+        G.E_MANAGER:add_event(Event({
+			func = function()
+				if G.jokers then
+					local card = create_card("Joker", G.jokers, nil, "jtc_mythical", nil, nil, nil, "jtc_mythos")
+					card:add_to_deck()
+					G.jokers:emplace(card)
+					return true
+				end
+			end,
+		}))
+	end
+}
 
 -- SEALS
 
@@ -790,6 +970,37 @@ SMODS.Seal{
     end
 }
 
+SMODS.Seal{
+    key = 'sloppy',
+    loc_txt = {
+        name = 'Splotch Branding',
+        label = 'Splotch Branding',
+        text = {
+            '{X:mult,C:white}X1.25{} Mult when',
+            'played and scored.'
+        }
+    },
+    atlas = 'splotchseal',
+    pos = {x = 0, y = 0},
+    badge_colour = HEX('000000'),
+    sound = {sound = 'jtc_splotch', per = 1, vol = 1},
+    config = {
+            Xmult = 1.25
+    },
+    loc_vars = function(self, info_queue)
+        return { vars = { self.config.x_chips, self.config.Xmult } }
+    end,
+    calculate = function(self,card,context)
+        if context.main_scoring and context.cardarea == G.play then
+            return {
+                Xmult_mod = self.config.Xmult,
+                message = 'X1.25 Mult'
+            }
+        end
+    end
+
+}
+
 -- BLINDS
 
 SMODS.Blind{
@@ -825,6 +1036,28 @@ SMODS.Blind{
 }
 
 SMODS.Blind{
+    name = "boss_crosshair",
+    key = "boss_crosshair",
+    atlas = "thecrosshair",
+    dollars = 5,
+    mult = 2,
+    loc_txt = {
+        name = 'The Crosshair',
+        text = {
+            'Playing 4 or more cards',
+            'is restricted',
+        }
+    },
+    boss = { min = 4 },
+    boss_colour = HEX('a293d7'),
+
+    debuff = {
+        h_size_ge = 1,
+        h_size_le = 3
+    }
+}
+
+SMODS.Blind{
     name = "boss_pillar",
     key = "boss_pillar",
     atlas = "concretepillar",
@@ -839,6 +1072,43 @@ SMODS.Blind{
     },
     boss = { showdown = true },
     boss_colour = HEX('525252'),
+}
+
+SMODS.Blind{
+    name = "boss_nail",
+    key = "boss_nail",
+    atlas = "noirnail",
+    dollars = 8,
+    mult = 2.5,
+    loc_txt = {
+        name = 'Noir Nail',
+        text = {
+            'Play only 1 hand.',
+            'Slightly larger blind'
+        }
+    },
+    boss = { showdown = true },
+    boss_colour = HEX('3a3a3a'),
+    config = {
+        extra = {
+            hands = 1
+        }
+    },
+
+    loc_vars = function(self, info_queue, card)
+        return {vars = {self.config.extra.hands}}
+    end,
+    collection_loc_vars = function(self)
+        return {vars = {self.config.extra.hands}}
+    end,
+    set_blind = function(self)
+        self.hands_sub = G.GAME.round_resets.hands - self.config.extra.hands
+        ease_hands_played(-self.hands_sub)
+    end,
+        disable = function(self)
+        self.hands_sub = G.GAME.round_resets.hands - self.config.extra.hands
+        ease_hands_played(self.hands_sub)
+    end,
 }
 
 -- afterwards, all jokers here are formatted by Atlas first, then Joker info. all atlases are NOT in a bushel of their own and are always near the joker thats utilizing it cuz why not.
@@ -2873,6 +3143,433 @@ end
 }
 
 SMODS.Atlas{
+    key = 'AmbiguousThoughts',
+    path = 'ambiguousthoughts.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker{
+    key = 'gaygay',
+    loc_txt = {
+        name = "Ambiguous Thoughts",
+        text = {
+            '{C:inactive}(OC Joker){}',
+            '{C:dark_edition}Polychrome{} cards played in a',
+            '{C:attention}Straight{} are retriggered {C:attention}once.{}'
+        }
+    },
+    atlas = 'AmbiguousThoughts',
+    rarity = 2,
+    cost = 6,
+    unlocked = true,
+    discovered = false,
+    blueprint_compat = true,
+    brainstorm_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    pos = {x = 0, y = 0},
+    config = {
+        extra = {
+            repetitions = 1
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.repetitions } }
+    end,
+    calculate = function(self,card,context)
+        if context.cardarea == G.play and context.repetition and not context.repetition_only then
+            if next(context.poker_hands["Straight"]) and context.other_card and context.other_card.edition and context.other_card.edition.polychrome == true then
+                    return {
+                        repetitions = card.ability.extra.repetitions,
+                        message = 'Again!',
+                        card = card,
+                    }
+                end
+            end
+        end
+}
+
+SMODS.Atlas{
+    key = 'MembersCard',
+    path = 'MembersCard.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker{
+    key = 'membercard',
+    loc_txt = {
+        name = "Members' Reward Card",
+        text = {
+            'Gains {C:mult}+3{} Mult for every',
+            '{C:red}Benefit{} card played and scored.',
+            '(Currently {C:mult}+#1#{} Mult.)'
+        }
+    },
+    atlas = 'MembersCard',
+    rarity = 2,
+    cost = 6,
+    unlocked = true,
+    discovered = false,
+    blueprint_compat = true,
+    brainstorm_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    pos = {x = 0, y = 0},
+    config = {
+        extra = {
+            mult = 0, mult_gain = 3
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.mult, card.ability.extra.mult_gain } }
+    end,
+    calculate = function(self,card,context)
+        if context.cardarea == G.play and context.individual and SMODS.get_enhancements(context.other_card)["m_jtc_Assist"] == true and not context.blueprint then
+            card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
+                return {
+                    message = "Upgraded!",
+                    color = G.C.MONEY,
+                    card = card,
+                }
+            end
+        if context.joker_main then
+                    return {
+                        mult_mod = card.ability.extra.mult,
+                        message = "+" .. card.ability.extra.mult .. " Mult",
+                    }
+                end
+            end
+}
+
+SMODS.Atlas{
+    key = 'indulgence',
+    path = 'IndulgentEvergreen.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker{
+    key = 'Indulgence',
+    loc_txt = {
+        name = "Indulgence",
+        text = {
+            '{C:red}destroys{} all {C:attention}Tropic{} cards',
+            'played and scored. Gains',
+            '{X:mult,C:white}X0.5{} Mult for every card',
+            'destroyed this way.',
+            '(Currently {X:mult,C:white}X#1#{} Mult.)'
+        }
+    },
+    atlas = 'indulgence',
+    rarity = 3,
+    cost = 8,
+    unlocked = true,
+    discovered = false,
+    blueprint_compat = true,
+    brainstorm_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    pos = {x = 0, y = 0},
+    config = {
+        extra = {
+            Xmult = 1, Xmult_mod = 0.5
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.Xmult, card.ability.extra.Xmult_mod } }
+    end,
+    calculate = function(self,card,context)
+            if context.destroying_card and (context.destroying_card.config.center_key == 'm_jtc_Tropic') then
+                card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_mod
+                return {
+                    remove = true,
+                    message = "Fresh Blood...",
+                    color = G.C.RED,
+                    card = card,
+                }
+            end
+        if context.joker_main then
+                    return {
+                        Xmult_mod = card.ability.extra.Xmult,
+                        message = "X" .. card.ability.extra.Xmult .. " Mult",
+                    }
+                end
+            end
+}
+
+SMODS.Atlas{
+    key = 'Tomi',
+    path = 'Tomi.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker{
+    key = 'tomi',
+    loc_txt = {
+        name = "Tomi",
+        text = {
+            '{C:inactive}(OC Joker){}',
+            '{C:attention}Lucky{} cards, regardless on',
+            'if they trigger or not, give',
+            '{C:money}$10{} and {X:mult,C:white}X2{} Mult.',
+            "{C:inactive}'So much for my own fortunes...'{}"
+        }
+    },
+    atlas = 'Tomi',
+    rarity = 3,
+    cost = 13,
+    order = 58,
+    unlocked = true,
+    discovered = false,
+    blueprint_compat = true,
+    brainstorm_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    pos = {x = 0, y = 0},
+    config = {
+        extra = {
+            dollars = 5, Xmult = 2
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return { { card.ability.extra.dollars, card.ability.extra.Xmult } }
+    end,
+    calculate = function(self,card,context)
+    if context.cardarea == G.play and context.individual then
+        if SMODS.get_enhancements(context.other_card)["m_lucky"] == true then
+            return {
+                Xmult_mod = card.ability.extra.Xmult,
+                message = "X2 Mult",
+                color = G.C.RED,
+                card = card,
+                dollars = card.ability.extra.dollars,
+                card = card,
+            }
+        end
+    end
+end
+}
+
+SMODS.Atlas{
+    key = 'legionofsteel',
+    path = 'legionofsteel.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker{
+    key = 'legionofsteel',
+    loc_txt = {
+        name = "Legion of Steel",
+        text = {
+            '{C:attention}Steel{} cards are {C:attention}retriggered{}',
+            'if held in hand during scoring.'
+        }
+    },
+    atlas = 'legionofsteel',
+    rarity = 2,
+    cost = 8,
+    order = 58,
+    unlocked = true,
+    discovered = false,
+    blueprint_compat = true,
+    brainstorm_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    pos = {x = 0, y = 0},
+    config = {
+        extra = {
+            repetitions = 1
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.repetitions } }
+    end,
+    calculate = function(self,card,context)
+    if context.cardarea == G.hand and context.repetition and not context.repetition_only then
+        if SMODS.get_enhancements(context.other_card)["m_steel"] == true then
+                return {
+                    repetitions = card.ability.extra.repetitions,
+                    message = 'Again!',
+                    card = card,
+                    }
+                end
+            end
+        end
+}
+
+SMODS.Atlas{
+    key = 'identityfraud',
+    path = 'identityfraud.png',
+    px = 152,
+    py = 200
+}
+
+SMODS.Joker{
+    key = 'identityfraud',
+    loc_txt = {
+        name = "Identity Fraud",
+        text = {
+            'Copies ability of the {C:attention}Joker{}',
+            'to its immediate left.',
+            'Can copy applicable',
+            '{C:jtc_stunning}Stunning{} and {C:jtc_mythical}Mythical{} Jokers.'
+        }
+    },
+    atlas = 'identityfraud',
+    rarity = 3,
+    cost = 10,
+    order = 58,
+    unlocked = true,
+    discovered = false,
+    blueprint_compat = true,
+    brainstorm_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 1, y = 0},
+    loc_vars = function(self, info_queue, card)
+        return { vars = { } }
+    end,
+    calculate = function(self, card, context)
+        local other_joker = nil
+		for i = 1, #G.jokers.cards do
+			if G.jokers.cards[i] == card then
+				other_joker = G.jokers.cards[i - 1]
+			end
+		end
+		if other_joker and other_joker ~= self then
+			context.blueprint = (context.blueprint and (context.blueprint + 1)) or 1
+			context.blueprint_card = context.blueprint_card or card
+
+			if context.blueprint > #G.jokers.cards + 1 then
+				return
+			end
+
+			local other_joker_ret, trig = other_joker:calculate_joker(context)
+			if other_joker_ret or trig then
+				if not other_joker_ret then
+					other_joker_ret = {}
+				end
+				other_joker_ret.card = context.blueprint_card or card
+				other_joker_ret.colour = G.C.BLUE
+				other_joker_ret.no_callback = true
+				return other_joker_ret
+			end
+		end
+    end
+}
+
+SMODS.Atlas{
+    key = 'burneddvd',
+    path = 'burneddvd.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker{
+    key = 'milkyqretail',
+    loc_txt = {
+        name = "{s:0.8}One Copy of MilkyQ - Retail{}",
+        text = {
+            '{C:dark_edition}Join The Crowd{} {C:attention}Enhancements{}',
+            'are retriggered {C:attention}twice.{}'
+        }
+    },
+    atlas = 'burneddvd',
+    rarity = 3,
+    cost = 8,
+    order = 58,
+    unlocked = true,
+    discovered = false,
+    blueprint_compat = true,
+    brainstorm_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    pos = {x = 0, y = 0},
+    config = {
+        extra = {
+            repetitions = 2
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return { { card.ability.extra.repetitions } }
+    end,
+    calculate = function(self,card,context)
+    if context.cardarea == G.play and context.repetition and not context.repetition_only then
+        if SMODS.get_enhancements(context.other_card)["m_jtc_Tropic"] == true or SMODS.get_enhancements(context.other_card)["m_jtc_Assist"] == true or SMODS.get_enhancements(context.other_card)["m_jtc_DVD"] == true then
+            return {
+                repetitions = card.ability.extra.repetitions,
+                message = 'Again!',
+                card = card,
+            }
+        end
+    end
+end
+}
+
+SMODS.Atlas{
+    key = 'farfromperfect',
+    path = 'farfromperfect.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker{
+    key = 'alongway',
+    loc_txt = {
+        name = "A Long, Long Way",
+        text = {
+            '{X:tarot,C:white}X1.25{} Double Time after each hand played.',
+            'Gives {C:money}$6{} at end of each round.',
+            "{C:inactive}Thanks for playing! Cheers!{}",
+            "{C:inactive}This is the last JTC Joker for now, lol.{}",
+            '{C:inactive}-MilkyQ / Dynaleet{}'
+        }
+    },
+    atlas = 'farfromperfect',
+    rarity = 2,
+    cost = 8,
+    order = 58,
+    unlocked = true,
+    discovered = false,
+    blueprint_compat = true,
+    brainstorm_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    pos = {x = 0, y = 0},
+    config = { 
+        extra = {
+            Xmult = 1.25, x_chips = 1.25, money = 6
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.Xmult, card.ability.extra.money } }
+    end,
+        calc_dollar_bonus = function(self, card)
+        local bonus = card.ability.extra.money
+        if bonus > 0 then return bonus end
+    end,
+    calculate = function(self,card,context)
+        if context.joker_main then
+            return {
+                xmult = card.ability.extra.Xmult,
+                chips = 2 * hand_chips,
+                message = "X2 All",
+                sound = 'jtc_doubletime1',
+                colour = G.C.PURPLE,
+                remove_default_message = true
+              }
+        end
+    end
+}
+
+-- STUNNING JOKERS 
+
+SMODS.Atlas{
     key = 'TheComedian',
     path = 'thecomedian.png',
     px = 71,
@@ -2887,7 +3584,8 @@ SMODS.Joker{
             'Creates a random {C:red}Crowd{} card',
             'when entering a blind.',
             '{C:inactive}Can generate Kingpin and Angel,{}',
-            '{C:inactive}though chances should be unlikely.{}'
+            '{C:inactive}though chances should be unlikely.{}',
+            '{C:inactive}(must have room.){}'
         }
     },
     atlas = 'TheComedian',
@@ -2975,7 +3673,7 @@ SMODS.Joker{
                 delay = 0.3,
                 blockable = false,
                 func = function()
-                    local card = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_jtc_TropicCard')
+                    local card = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_jtc_TouristCard')
                     card:add_to_deck()
                     G.consumeables:emplace(card)
                   return true;
@@ -3010,8 +3708,10 @@ SMODS.Joker{
         name = "{s:0.8}Milky's Mechanical Museum{}",
         text = {
             '{C:inactive}(OC Joker){}',
-            'If played poker hand is a {C:attention}Five of a Kind{} or {C:attention}Flush Five{}',
-            'Create two {C:spectral}Soul{} cards, then {C:red}destroy{} this Joker.',
+            'If played poker hand is a {C:attention}Five of a Kind{},',
+            'this Joker creates {C:spectral}Soul{} cards adjacent to',
+            'the amount of {C:attention}Consumable slots{} you have,' ,
+            'then immediately {C:red}self destructs.{}',
             '{C:inactive}No ones better than you!{}'
         }
     },
@@ -3032,7 +3732,7 @@ SMODS.Joker{
     return{vars = { }}
     end,
     calculate = function(self,card,context)
-        if context.cardarea == G.play and next(context.poker_hands["Five of a Kind"]) and next(context.poker_hands["Flush Five"]) and not context.repetition and not (context.blueprint_card or self).getting_sliced then
+        if context.cardarea == G.play and next(context.poker_hands["Five of a Kind"]) and not context.repetition and not (context.blueprint_card or self).getting_sliced then
                 if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
                     local new_card = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_soul')
                     new_card:add_to_deck()
@@ -3066,6 +3766,153 @@ SMODS.Joker{
         end
     end
 }
+
+SMODS.Atlas{
+    key = 'ManOfWar',
+    path = 'manofwar.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker{
+    key = 'manofwar',
+    loc_txt = {
+        name = "...And Justice for All",
+        text = {
+            '{C:inactive}(OC Joker){}',
+            'all played and scored {C:attention}Glass{} cards',
+            'are retriggered {C:attention}once.{}',
+            "{C:inactive}'Justice is dead, and mankind betrayed them.'{}"
+        }
+    },
+    atlas = 'ManOfWar',
+    rarity = 'jtc_stunning',
+    cost = 10,
+    order = 58,
+    unlocked = true,
+    discovered = false,
+    blueprint_compat = true,
+    brainstorm_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    pos = {x = 0, y = 0},
+    config = {
+        extra = {
+            repetitions = 1
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.repetitions } }
+    end,
+    calculate = function(self,card,context)
+    if context.cardarea == G.play and context.repetition and not context.repetition_only then
+        if SMODS.get_enhancements(context.other_card)["m_glass"] == true then
+                return {
+                    repetitions = card.ability.extra.repetitions,
+                    message = 'MORE!',
+                    card = card,
+                    }
+                end
+            end
+        end
+}
+
+SMODS.Atlas{
+    key = 'Osiris',
+    path = 'Osiris.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker{
+    key = 'osiris',
+    loc_txt = {
+        name = "Osiris",
+        text = {
+            '{C:inactive}(OC Joker){}',
+            '{C:purple}Balances{} {C:chips}Chips{} with {C:mult}Mult{}',
+            'after each hand played.',
+            "{C:inactive}'I'm sure this'll be a doozy.'{}"
+        }
+    },
+    atlas = 'Osiris',
+    rarity = 'jtc_stunning',
+    cost = 13,
+    order = 58,
+    unlocked = true,
+    discovered = false,
+    blueprint_compat = false,
+    brainstorm_compat = false,
+    eternal_compat = true,
+    perishable_compat = true,
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 1, y = 0},
+    config = {
+        extra = {
+
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return { { } }
+    end,
+    calculate = function(self,card,context)
+    if context.joker_main then
+        return {
+                    chips = hand_chips - hand_chips - hand_chips + mult,
+                    remove_default_message = true,
+                    message = 'Balanced!',
+                    sound = 'gong',
+                    color = G.C.PURPLE,
+                    card = card,
+                }
+            end
+        end
+}
+
+SMODS.Atlas{
+    key = 'HonestJesting',
+    path = 'honestjesting.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker{
+    key = 'honestjesting',
+    loc_txt = {
+        name = "Honest Jesting",
+        text = {
+            '{C:inactive}(OC Joker){}',
+            '{C:dark_edition}+2{} Joker slots.',
+        }
+    },
+    atlas = 'HonestJesting',
+    rarity = 'jtc_stunning',
+    cost = 15,
+    order = 58,
+    unlocked = true,
+    discovered = false,
+    blueprint_compat = false,
+    brainstorm_compat = false,
+    eternal_compat = false,
+    perishable_compat = true,
+    pos = {x = 0, y = 0},
+    config = { 
+        extra = {
+            joker_size = 2
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.joker_size} }
+    end,
+    add_to_deck = function(self,card,from_debuff)
+        G.jokers.config.card_limit = G.jokers.config.card_limit + card.ability.extra.joker_size
+    end,
+    remove_from_deck = function(self,card,from_debuff)
+        G.jokers.config.card_limit = G.jokers.config.card_limit - card.ability.extra.joker_size
+    end,
+}
+
+-- LEGENDARIES
 
 SMODS.Atlas{
     key = 'Milky',
@@ -3284,7 +4131,7 @@ SMODS.Joker{
     order = 48,
     unlocked = true,
     discovered = false,
-    blueprint_compat = true,
+    blueprint_compat = false,
     brainstorm_compat = true,
     eternal_compat = true,
     perishable_compat = true,
@@ -3292,50 +4139,15 @@ SMODS.Joker{
     soul_pos = {x = 1, y = 0},
     config = { 
         extra = {
-            money = 35,
-            odds = 3
+            money = 35
     }
     },
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.money, (G.GAME.probabilities.normal or 1), card.ability.extra.odds } }
+        return { vars = { card.ability.extra.money } }
     end,
     calc_dollar_bonus = function(self, card)
     local bonus = card.ability.extra.money
     if bonus > 0 then return bonus end
-
-
-    if context.end_of_round and not context.repetition and context.game_over == false and not context.blueprint then
-        if pseudorandom('rath') < G.GAME.probabilities.normal / card.ability.extra.odds then
-          G.E_MANAGER:add_event(Event({
-            func = function()
-              play_sound('tarot1')
-              card.T.r = -0.2
-              card:juice_up(0.3, 0.4)
-              G.E_MANAGER:add_event(Event({
-                trigger = 'after',
-                delay = 0.3,
-                blockable = false,
-                func = function()
-                    local card = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_temperance')
-                    card:set_edition('e_negative', true)
-                    card:add_to_deck()
-                    G.consumeables:emplace(card)
-                  return true;
-                end
-              }))
-              return true
-            end
-          }))
-          G.GAME.pool_flags.rath_money = true
-          return {
-            message = 'Yep!'
-          }
-        else
-          return {
-            message = 'Nope!'
-          }
-        end
-      end
     end
 }
 
@@ -4017,7 +4829,7 @@ SMODS.Joker{
                     card = card,
                 }
             end
-            if (context.other_card:get_id() == 2 or context.other_card:get_id() == 2 or context.other_card:get_id() == 6 or context.other_card:get_id() == 8 or context.other_card:get_id() == 10) then
+            if (context.other_card:get_id() == 2 or context.other_card:get_id() == 4 or context.other_card:get_id() == 6 or context.other_card:get_id() == 8 or context.other_card:get_id() == 10) then
                 return {
                     chip_mod = hand_chips * card.ability.extra.x_chips,
                      message = 'X' .. card.ability.extra.x_chips,
@@ -4029,6 +4841,8 @@ SMODS.Joker{
         end
     end
 }
+
+-- MYTHICALS 
 
 SMODS.Atlas{
     key = 'Supreme',
@@ -4056,7 +4870,7 @@ SMODS.Joker{
     discovered = false,
     blueprint_compat = false,
     brainstorm_compat = false,
-    eternal_compat = true,
+    eternal_compat = false,
     perishable_compat = false,
     pos = {x = 0, y = 0},
     config = { 
@@ -4114,7 +4928,7 @@ SMODS.Joker{
     discovered = false,
     blueprint_compat = false,
     brainstorm_compat = false,
-    eternal_compat = true,
+    eternal_compat = false,
     perishable_compat = false,
     pos = {x = 0, y = 0},
     soul_pos = {x = 1, y = 0},
@@ -4170,7 +4984,7 @@ SMODS.Joker{
     discovered = false,
     blueprint_compat = false,
     brainstorm_compat = false,
-    eternal_compat = true,
+    eternal_compat = false,
     perishable_compat = false,
     pos = {x = 0, y = 0},
     soul_pos = {x = 1, y = 0},
@@ -4232,7 +5046,7 @@ SMODS.Joker{
     discovered = false,
     blueprint_compat = false,
     brainstorm_compat = false,
-    eternal_compat = true,
+    eternal_compat = false,
     perishable_compat = false,
     pos = {x = 0, y = 0},
     soul_pos = {x = 1, y = 0},
@@ -4247,7 +5061,7 @@ SMODS.Joker{
     calculate = function(self,card,context)
         if context.cardarea == G.play and context.individual and context.other_card and context.other_card.edition and context.other_card.edition.negative == true and not context.repetition then
             return {
-                chip_mod = hand_chips * card.ability.extra.x_chips,
+                chip_mod = hand_chips - hand_chips * card.ability.extra.x_chips,
                 message = 'X5 Chips',
                 sound = 'jtc_xchipadd',
                 color = G.C.DARK_EDITION,
@@ -4297,7 +5111,7 @@ SMODS.Joker{
     discovered = false,
     blueprint_compat = false,
     brainstorm_compat = false,
-    eternal_compat = true,
+    eternal_compat = false,
     perishable_compat = false,
     allow_duplicates = false,
     pos = {x = 0, y = 0},

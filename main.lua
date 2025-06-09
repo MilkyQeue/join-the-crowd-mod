@@ -1832,8 +1832,8 @@ SMODS.Joker{
     loc_txt = {
         name = "Double Time",
         text = {
-            'Performs {C:tarot}Double Time{} at the end of a round.',
-            '({X:mult,C:white}X2{} Mult and {X:chips,C:white}X2{} Chips, simultaneously.)'
+            'Performs {C:tarot}Double Time{}.',
+            '({X:mult,C:white}X2{} Mult and {X:chips,C:white}X2{} Chips.)'
         }
     },
     atlas = 'DubT',
@@ -1883,8 +1883,9 @@ SMODS.Joker{
         name = "Jebaited",
         text = {
             '{C:inactive}(Joke Joker)',
-            '{X:mult,C:white}X#1#{} Mult at end of round.',
-            "{C:inactive}(Buy this! It's good!){}"
+            '{X:mult,C:white}X#1#{} Mult.',
+            "{C:inactive}(Buy this! It's good!){}",
+            '{s:0.5,C:inactive}(In reality, +5 Chips.){}'
         }
     },
     atlas = 'jebaited',
@@ -3320,7 +3321,7 @@ SMODS.Joker{
     },
     atlas = 'Tomi',
     rarity = 3,
-    cost = 13,
+    cost = 9,
     order = 58,
     unlocked = true,
     discovered = false,
